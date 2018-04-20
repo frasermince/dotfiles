@@ -1,6 +1,14 @@
 " Use Vim settings, rather then Vi settings. This setting must be as early as
 " possible, as it has side effects.
 set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+  Plugin 'VundleVim/Vundle.vim'
+  Plugin 'kien/ctrlp.vim'
+call vundle#end()
+filetype plugin indent on
+
 execute pathogen#infect()
 
 " Leader
@@ -25,9 +33,9 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
 
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
+"if filereadable(expand("~/.vimrc.bundles"))
+  "source ~/.vimrc.bundles
+"endif
 
 filetype plugin indent on
 
@@ -84,7 +92,7 @@ endif
 " Color scheme
 set number
 syntax enable
-set background=light
+set background=dark
 let g:solarized_termtrans = 1
 let g:solarized_termcolors = 256
 colorscheme solarized
@@ -116,12 +124,6 @@ map <Leader>ct :!ctags -R .<CR>
 
 " Switch between the last two files
 nnoremap <leader>a <c-^>
-
-" Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
 
 set winwidth=84
 set winheight=5
@@ -177,6 +179,9 @@ map <Leader>n :NERDTreeToggle<CR>
 
 "Clipboard support
 set clipboard=unnamed
+
+"Match ends
+runtime macros/matchit.vim
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
